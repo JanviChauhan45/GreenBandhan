@@ -103,6 +103,7 @@ function App() {
         <div className="hero-buttons">
           <button className="btn btn-primary" onClick={() => setActiveTab('report')}>Report an Issue</button>
           <button className="btn btn-secondary" onClick={() => setActiveTab('campaigns')}>Join a Campaign</button>
+          <button className="btn btn-outline" onClick={() => setActiveTab('register')}>Get Started</button>
         </div>
       </div>
 
@@ -146,10 +147,9 @@ function App() {
     </div>
   );
 
-  const renderAuthTab = () => (
+  const renderLoginTab = () => (
     <div className="auth-container">
       {authMessage && <div className="auth-message">{authMessage}</div>}
-
       <div className="auth-grid">
         <div className="auth-card">
           <h3>Login</h3>
@@ -164,11 +164,18 @@ function App() {
             </div>
             <button type="submit" className="btn btn-primary">Login</button>
           </form>
+          <p className="inline-text" style={{ marginTop: '0.75rem' }}>Don't have an account? <button className="link-button" onClick={() => setActiveTab('register')}>Register</button></p>
         </div>
+      </div>
+    </div>
+  );
 
+  const renderRegisterTab = () => (
+    <div className="auth-container">
+      {authMessage && <div className="auth-message">{authMessage}</div>}
+      <div className="auth-grid">
         <div className="auth-card">
           <h3>Register</h3>
-
           {registerStep === 'chooseRole' ? (
             <div>
               <p className="inline-text">Choose your role to continue:</p>
@@ -204,6 +211,7 @@ function App() {
               <button type="submit" className="btn btn-secondary">Create Account</button>
             </form>
           )}
+          <p className="inline-text" style={{ marginTop: '0.75rem' }}>Already have an account? <button className="link-button" onClick={() => setActiveTab('login')}>Login</button></p>
         </div>
       </div>
     </div>
@@ -215,7 +223,7 @@ function App() {
         <div className="report-content" style={{ textAlign: 'center' }}>
           <h2>Dashboard</h2>
           <p>Please login to view your dashboard.</p>
-          <button className="btn btn-primary" onClick={() => setActiveTab('auth')}>Go to Login</button>
+          <button className="btn btn-primary" onClick={() => setActiveTab('login')}>Go to Login</button>
         </div>
       );
     }
@@ -377,8 +385,10 @@ function App() {
     switch (activeTab) {
       case 'home':
         return renderHomeTab();
-      case 'auth':
-        return renderAuthTab();
+      case 'login':
+        return renderLoginTab();
+      case 'register':
+        return renderRegisterTab();
       case 'dashboard':
         return renderDashboardTab();
       case 'campaigns':
@@ -434,10 +444,16 @@ function App() {
             Donate
           </button>
           <button 
-            className={`nav-tab ${activeTab === 'auth' ? 'active' : ''}`}
-            onClick={() => setActiveTab('auth')}
+            className={`nav-tab ${activeTab === 'login' ? 'active' : ''}`}
+            onClick={() => setActiveTab('login')}
           >
-            Login/Register
+            Login
+          </button>
+          <button 
+            className={`nav-tab ${activeTab === 'register' ? 'active' : ''}`}
+            onClick={() => setActiveTab('register')}
+          >
+            Register
           </button>
         </nav>
         
@@ -450,8 +466,8 @@ function App() {
             </>
           ) : (
             <>
-              <button className="btn btn-outline" onClick={() => setActiveTab('auth')}>Login</button>
-              <button className="btn btn-primary" onClick={() => setActiveTab('auth')}>Sign Up</button>
+              <button className="btn btn-outline" onClick={() => setActiveTab('login')}>Login</button>
+              <button className="btn btn-primary" onClick={() => setActiveTab('register')}>Sign Up</button>
             </>
           )}
         </div>
