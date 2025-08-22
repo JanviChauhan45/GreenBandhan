@@ -30,7 +30,22 @@ function App() {
   const [authMessage, setAuthMessage] = useState('');
   const [loginForm, setLoginForm] = useState({ username: '', password: '' });
   const [registerStep, setRegisterStep] = useState('chooseRole'); // 'chooseRole' | 'form'
-  const [registerForm, setRegisterForm] = useState({ role: 'citizen', username: '', email: '', password: '' });
+  const [registerForm, setRegisterForm] = useState({ 
+    role: 'citizen', 
+    firstName: '', 
+    lastName: '', 
+    email: '', 
+    username: '', 
+    password: '', 
+    confirmPassword: '',
+    phone: '',
+    address: '',
+    organizationName: '',
+    registrationNumber: '',
+    contactPerson: '',
+    skills: '',
+    availability: ''
+  });
 
   useEffect(() => {
     // Fetch home data when component mounts
@@ -105,6 +120,26 @@ function App() {
     setActiveTab('home');
   };
 
+  const resetRegisterForm = () => {
+    setRegisterForm({ 
+      role: 'citizen', 
+      firstName: '', 
+      lastName: '', 
+      email: '', 
+      username: '', 
+      password: '', 
+      confirmPassword: '',
+      phone: '',
+      address: '',
+      organizationName: '',
+      registrationNumber: '',
+      contactPerson: '',
+      skills: '',
+      availability: ''
+    });
+    setRegisterStep('chooseRole');
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case 'home':
@@ -129,6 +164,7 @@ function App() {
             setRegisterForm={setRegisterForm}
             handleRegisterSubmit={handleRegisterSubmit}
             setActiveTab={setActiveTab}
+            resetRegisterForm={resetRegisterForm}
           />
         );
       case 'dashboard':

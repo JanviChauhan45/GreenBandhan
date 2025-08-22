@@ -7,7 +7,7 @@ const HomePage = ({ stats, recentReports, setActiveTab }) => {
         <h1>Welcome to GreenBandhan</h1>
         <div className="hindi-quote">
           <p className="quote-text">"प्रकृति से जुड़ाव, कल के लिए संकल्प"</p>
-          <p className="quote-translation">"Connection with Nature, Conservation of Environment"</p>
+          <p className="quote-translation">"Connected to Nature, Committed to Tomorrow"</p>
         </div>
         <p className="hero-description">Empowering communities to create a greener, cleaner world together</p>
         <div className="hero-buttons">
